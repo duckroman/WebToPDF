@@ -1,0 +1,57 @@
+Crea una aplicación web con una arquitectura de dos componentes principales:
+
+Frontend (Cliente): Una interfaz de usuario moderna y reactiva construida con React y estilizada con Tailwind CSS. Desde aquí, el usuario introducirá la URL y gestionará el proceso.
+Backend (Servidor): Un microservicio ligero usando Node.js y Express. Su única responsabilidad será recibir una URL, usar una librería de control de navegador como Puppeteer para visitar la página y tomar una captura de pantalla completa y de alta fidelidad, y devolverla al cliente.
+¿Por qué este enfoque? La captura de páginas web completas directamente desde el navegador (frontend) es muy propensa a errores y limitaciones de seguridad (CORS). Usar un servidor nos permite controlar un navegador real en un entorno controlado, garantizando capturas perfectas y el manejo de contenido dinámico.
+
+Tecnologías Propuestas
+Frontend: React, Vite, Tailwind CSS
+Backend: Node.js, Express
+Captura Web: Puppeteer
+Generación de PDF: jsPDF (en el frontend)
+Iconos: Lucide React
+Fases del Proyecto
+Fase 1: Configuración del Entorno
+
+Crearé una estructura de proyecto con dos carpetas: client para la aplicación React y server para la API de Node.js.
+Inicializaré ambos proyectos con sus dependencias básicas (npm init, npx create-vite).
+Fase 2: Desarrollo del Backend (Servidor de Captura)
+
+Configuraré un servidor Express con un único endpoint, por ejemplo: POST /api/capture.
+Este endpoint recibirá una { url: '...' } en el cuerpo de la petición.
+Implementaré la lógica con Puppeteer para:
+Lanzar un navegador "headless" (sin interfaz gráfica).
+Navegar a la URL proporcionada.
+Hacer scroll por toda la página para cargar contenido dinámico.
+Tomar una captura de pantalla de la página completa (fullPage: true).
+Devolver la imagen capturada en formato Base64.
+Fase 3: Desarrollo del Frontend (Interfaz de Usuario)
+
+Diseñaré la interfaz principal con React y Tailwind CSS, incluyendo:
+Título y descripción.
+Campo de entrada para la URL con validación.
+Botón de "Capturar" (con iconos de Lucide React).
+Un área para la barra de progreso y mensajes de estado.
+Un contenedor para la vista previa de la imagen.
+El botón "Descargar PDF", inicialmente deshabilitado.
+Fase 4: Integración Frontend-Backend
+
+Al pulsar "Capturar", la aplicación React:
+Validará la URL.
+Mostrará la barra de progreso y un mensaje como "Cargando página...".
+Enviará la petición POST al backend.
+Al recibir la imagen en Base64, la mostrará en el área de vista previa.
+Activará el botón "Descargar PDF".
+Gestionará los posibles errores (URL inválida, tiempo de espera agotado, etc.) mostrando mensajes claros al usuario.
+Fase 5: Generación y Descarga de PDF
+
+Al pulsar "Descargar PDF", se ejecutará la lógica en el cliente con jsPDF:
+Creará un nuevo documento PDF.
+Añadirá la URL capturada y la fecha actual como texto en la cabecera.
+Incrustará la imagen de la captura, ajustándola al tamaño de la página.
+Generará un nombre de archivo descriptivo (ej: captura-google.com-2025-11-25.pdf).
+Iniciará la descarga en el navegador del usuario.
+
+Crea un archivo readme.md que contenga la arquitectura y diagramas explicativos para que cualquier usuario pueda entender cómo está constituido el proyecto, cómo funciona y como usarlo.
+
+Crea tambien un archivo de contexto para que cualquier agente pueda retomar el proyecto.
