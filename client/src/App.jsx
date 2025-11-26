@@ -119,7 +119,7 @@ function App() {
                     onChange={(e) => setFollowLinks(e.target.checked)}
                     className="form-checkbox h-5 w-5 text-blue-600"
                 />
-                <span className="ml-2 text-gray-700">Seguir Enlaces</span>
+               <span className="ml-2 text-gray-700">Seguir Enlaces</span>
             </label>
             {followLinks && (
                 <label htmlFor="maxDepth" className="flex items-center">
@@ -135,6 +135,10 @@ function App() {
                     />
                 </label>
             )}
+
+    {/* By: © JRC 2025 en esquina inferior derecha */}
+    <p className="absolute bottom-0 right-0 text-sm text-gray-600 pr-4 pb-2">© JRC 2025</p>
+
         </div>
 
         {loading && (

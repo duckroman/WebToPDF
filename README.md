@@ -55,6 +55,8 @@ Capturar páginas web completas directamente desde el navegador (frontend) es mu
     ```
 5.  Abre tu navegador y navega a la URL que te proporciona el cliente (normalmente `http://localhost:5173`).
 
+    En el entorno de desarrollo, el servidor (`localhost:5001`) y el cliente (`localhost:5173`) se ejecutan en puertos diferentes, lo cual se maneja con la configuración CORS en el servidor.
+
 ---
 
-**Nota:** En el entorno de desarrollo, el servidor (`localhost:5001`) y el cliente (`localhost:5173`) se ejecutan en puertos diferentes, lo cual se maneja con la configuración CORS en el servidor.
+**Nota:** Creado por JRC para fines educativos y demostración de habilidades.
