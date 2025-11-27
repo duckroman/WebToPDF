@@ -33,9 +33,9 @@ app.post('/pdf', async (req, res) => {
 
     try {
         browser = await puppeteer.launch({
-    headless: true,
-    executablePath: '/usr/bin/chromium-browser',
-    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+    headless: 'new',
+    executablePath: '/snap/bin/chromium',
+    args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
         activeCaptureProcesses.get(requestId).browser = browser; // Store the browser instance
 
