@@ -32,7 +32,10 @@ app.post('/pdf', async (req, res) => {
     let activePages = 0; // Track active Puppeteer pages
 
     try {
-        browser = await puppeteer.launch({ headless: true });
+        browser = await puppeteer.launch({ 
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
+        });
         activeCaptureProcesses.get(requestId).browser = browser; // Store the browser instance
 
         // Ensure temp directory exists
@@ -192,7 +195,7 @@ app.post('/pdf', async (req, res) => {
 
     } catch (error) {
         console.error('Error in PDF generation process:', error);
-        res.status(500).send('Error generating PDF');
+        res.status(500).json({ message: 'Error generating PDF', details: error.message }); // Envía JSON
     } finally {
         // Ensure all pages are closed before closing the browser
         while (activePages > 0) {
