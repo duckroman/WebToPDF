@@ -19,7 +19,7 @@ function App() {
     setRequestId(newRequestId); // Set client-generated requestId immediately
 
     try {
-      const response = await fetch('http://localhost:5001/pdf', { // Explicitly target the backend server
+      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/pdf`, { // Usar variable de entorno para la URL del backend
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ function App() {
     setError(''); // Clear any previous errors
 
     try {
-        const response = await fetch('http://localhost:5001/stop-capture', {
+        const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/stop-capture`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -173,7 +173,7 @@ function App() {
                 <ul className="list-disc pl-5">
                 {generatedPdfs.map((filename, index) => (
                     <li key={index} className="text-gray-700">
-                        <a href={`http://localhost:5001/download-pdf/${filename}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
+                        <a href={`${import.meta.env.VITE_BACKEND_URL}/download-pdf/${filename}`} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">
                             {filename}
                         </a>
                     </li>
