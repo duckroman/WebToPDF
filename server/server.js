@@ -32,7 +32,11 @@ app.post('/pdf', async (req, res) => {
     let activePages = 0; // Track active Puppeteer pages
 
     try {
-        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox', '--disable-setuid-sandbox']});
+        browser = await puppeteer.launch({
+    headless: true,
+    executablePath: '/usr/bin/chromium-browser',
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-gpu']
+    });
         activeCaptureProcesses.get(requestId).browser = browser; // Store the browser instance
 
         // Ensure temp directory exists
